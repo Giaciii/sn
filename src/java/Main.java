@@ -17,5 +17,3 @@ public class Main {
         MainFrame.setVisible(true);
     }
 }
-
-//yäy
