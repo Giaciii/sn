@@ -9,6 +9,3 @@
   if ($conn->connect_error) {
     die("Fehler: " . $conn->connect_error);
   }
-  echo "Verbunden";
-
-  $conn->close(); 
