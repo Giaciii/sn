@@ -13,7 +13,7 @@ if ($result -> num_rows > 0) {
 ?>
 <html>
   <body>
-    <form action="neu.php">
+    <form action="neu.php" method="post">
       <input type="text" name="empfang" placeholder="Für">
       <textarea type="text" name="nachricht" placeholder="Nachricht"></textarea>
       <input type="submit" value="Senden">
