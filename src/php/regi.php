@@ -1,17 +1,26 @@
 <?php
 require 'conn.php';
 
-$vorname = $_POST['fname'];
-$nachname = $_POST['lname'];
-$email = $_POST['email'];
-$passwort = $_POST['password'];
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $vorname = mysqli_real_escape_string($conn, $_POST['fname']);
+  $nachname = mysqli_real_escape_string($conn, $_POST['lname']);
+  $email = mysqli_real_escape_string($conn, $_POST['email']);
+  $passwort = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-$sql = "INSERT INTO user (fname, lname, email, password) VALUES ('$vorname', '$nachname', '$email', '$passwort')";
+  $stmt = $conn->prepare("INSERT INTO user (fname, lname, email, password) VALUES (?, ?, ?, ?)");
+  $stmt->bind_param("ssss", $vorname, $nachname, $email, $passwort);
 
-if ($conn->query($sql) === TRUE) {
-  echo "Hinzugefügt";
+  if ($stmt->execute()) {
+    echo "Hinzugefügt";
+  } else {
+    echo "Fehler beim Hinzufügen des Benutzers.";
+    error_log("Fehler beim Hinzufügen des Benutzers: " . $stmt->error);
+  }
+
+  $stmt->close();
 } else {
-  echo "Fehler: " . $sql . "<br>" . $conn->error;
+  echo "Ungültige Anfrage";
 }
 
-$conn->close(); 
+$conn->close();
+?>

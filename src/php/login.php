@@ -1,24 +1,31 @@
 <?php
 require 'conn.php';
 
-if (!isset($_POST['submit'])) {
-  die("Error");
-}
+if (isset($_POST['submit'])) {
+  $email = mysqli_real_escape_string($conn, $_POST['email']);
+  $password = $_POST['password'];
 
-$email = $_POST['email'];
-$pas = $_POST['password'];
+  $sql = "SELECT email, password FROM user WHERE email=?"; // Prepared statement without password check
 
-$sql = "SELECT email, password FROM user WHERE email='".$email."' and password='".$pas."'";
+  $stmt = $conn->prepare($sql);
+  $stmt->bind_param("s", $email);
+  $stmt->execute();
+  $result = $stmt->get_result();
+  
+  if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    if (password_verify($password, $row['password'])) {
+      header('Location: home.php');
+    } else {
+      die("Falsches Passwort");
+    }
+  } else {
+    die("Benutzer nicht gefunden");
+  }
 
-$result = $conn -> query($sql);
-
-$row = $result -> fetch_object();
-
-if ($result = $row > 0){
-  header('Location: home.php');
+  $stmt->close();
+  $conn->close();
 } else {
-  die("Falscher Benutzername oder Passwort");
+  echo "Ungültige Anfrage";
 }
-
-
-$conn -> close();
+?>
