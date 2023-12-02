@@ -1,5 +1,5 @@
 <?php
-  $server = "127.0.0.1";
+  $server = "localhost";
   $db = "sn";
   $usr = "root";
   $pas = "";

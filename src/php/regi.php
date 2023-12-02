@@ -12,6 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   if ($stmt->execute()) {
     echo "Hinzugefügt";
+    header('Location: home.php');
   } else {
     echo "Fehler beim Hinzufügen des Benutzers.";
     error_log("Fehler beim Hinzufügen des Benutzers: " . $stmt->error);

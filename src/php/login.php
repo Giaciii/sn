@@ -1,4 +1,5 @@
 <?php
+session_start();
 require 'conn.php';
 
 if (isset($_POST['submit'])) {
@@ -15,6 +16,7 @@ if (isset($_POST['submit'])) {
   if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
     if (password_verify($password, $row['password'])) {
+      $_SESSION["uname"] = $_POST['email'];
       header('Location: home.php');
     } else {
       die("Falsches Passwort");
