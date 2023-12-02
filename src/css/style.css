@@ -410,3 +410,15 @@ body{
     width: 45px;
   }
 }
+
+/* Home */
+
+.personen {
+  position: absolute;
+  left: 0%;
+  padding: 5px;
+  border: 2px solid black;
+  height: 100%;
+  width: 25%;
+  text-align: center;
+}
