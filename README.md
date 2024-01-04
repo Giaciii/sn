@@ -8,3 +8,4 @@
 4. Jährliche Datenlöschung
 5. TOR? für Netzwerksicherheit
 6. Server online
+7. features add (2028)
