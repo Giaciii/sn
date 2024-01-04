@@ -10,10 +10,23 @@ $result = $conn -> query($sql_select);
 echo "<div id='nachrichten'>";
 if ($result -> num_rows > 0) {
   while($row = $result->fetch_assoc()) {
-      echo "<div class='nachricht andere'>";
-      echo $row['nachricht'] . "\n";
+      echo "<div>";
+      if ($row['empfang'] == $uname) {
+        echo "<div class='links'>";
+        echo "<div class='andere'>";
+        echo $row['nachricht'] . "\n";
+        echo "</div>";
+        echo "</div>";
+        echo "<span class='zeit links'>" . $row['zeit'] . "</span>";
+      } else {
+        echo "<div class='rechts'>";
+        echo "<div class='eigene'>";
+        echo $row['nachricht'] . "\n";
+        echo "</div>";
+        echo "</div>";
+        echo "<span class='zeit rechts'>" . $row['zeit'] . "</span>";
+      }
       echo "</div>";
-      echo "<span class='zeit'>Gesendet um: " . $row['zeit'] . "</span>";
   }
 }
 echo "</div>";
