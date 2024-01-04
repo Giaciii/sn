@@ -423,19 +423,28 @@ body{
   text-align: center;
 }
 
-.nachricht {
+.andere {
+  display: flex;
   padding: 5px;
   border: 2px solid black;
   border-radius: 5px;
   background-color: rgba(0, 0, 0, 0.199);
 }
 
-.andere {
+.eigene {
+  display: flex;
+  padding: 5px;
+  border: 2px solid black;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.199);
+}
+
+.links {
   display: flex;
   justify-content: left;
 }
 
-.eigene {
+.rechts {
   display: flex;
   justify-content: right;
 }
