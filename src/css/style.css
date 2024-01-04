@@ -422,3 +422,29 @@ body{
   width: 25%;
   text-align: center;
 }
+
+.nachricht {
+  padding: 5px;
+  border: 2px solid black;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.199);
+}
+
+.andere {
+  display: flex;
+  justify-content: left;
+}
+
+.eigene {
+  display: flex;
+  justify-content: right;
+}
+
+.zeit {
+  font-size: 10pt;
+}
+
+#schreiben {
+  position: fixed;
+  bottom: 1%;
+}
